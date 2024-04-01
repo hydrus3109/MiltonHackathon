@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0b6a3b3-4201-4cb7-996c-f3ee172c22a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/EtchHomescreen.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EtchASketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EtchASketch.java" afterDir="false" />
-    </list>
+    <list default="true" id="f0b6a3b3-4201-4cb7-996c-f3ee172c22a5" name="Changes" comment="added start screen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +23,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/abhiramtejomurtula/Documents/GitHub/MiltonHackathon"
+    "last_opened_file_path": "/Users/abhiramtejomurtula/Documents/GitHub/MiltonHackathon",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -43,6 +43,14 @@
       <option name="presentableId" value="Default" />
       <updated>1711977920283</updated>
     </task>
+    <task id="LOCAL-00001" summary="added start screen">
+      <created>1711979444384</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711979444384</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -55,5 +63,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added start screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="added start screen" />
   </component>
 </project>

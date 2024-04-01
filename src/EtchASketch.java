@@ -12,7 +12,7 @@ public class EtchASketch extends JPanel {
     private List<Color> colors = new ArrayList<>(); // Track colors for each point
     private Color currentColor = Color.BLACK; // Start with black color
     private Map<Integer, Boolean> keyMap = new HashMap<>(); // Track key states
-    private boolean gameRunning = false;
+    public boolean gameRunning = false;
     public Image startScreen;
 
     public EtchASketch() {
@@ -44,11 +44,10 @@ public class EtchASketch extends JPanel {
     }
 
     private void moveDot() {
+        if (keyMap.getOrDefault(KeyEvent.VK_ENTER, false)) { // Erase functionality
+            gameRunning = true;
+        }
         while (gameRunning) {
-            if (keyMap.getOrDefault(KeyEvent.VK_ENTER, false)) { // Erase functionality
-                gameRunning = true;
-            }
-
             if (keyMap.getOrDefault(KeyEvent.VK_E, false)) { // Erase functionality
                 points.clear();
                 colors.clear();
