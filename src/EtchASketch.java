@@ -6,24 +6,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class EtchASketch extends JPanel {
     private List<Point> points = new ArrayList<>();
     private List<Color> colors = new ArrayList<>(); // Track colors for each point
     private Color currentColor = Color.BLACK; // Start with black color
     private Map<Integer, Boolean> keyMap = new HashMap<>(); // Track key states
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Image image = toolkit.getImage("src/EtchHomescreen.PNG" );
+
     public EtchASketch() {
         setPreferredSize(new Dimension(500, 500));
         setBackground(Color.WHITE);
         setFocusable(true);
         points.add(new Point(250, 250)); // Starting point
         colors.add(currentColor); // Add the current color for the starting point
+
+        // Initialize key states for movement and erase
         keyMap.put(KeyEvent.VK_UP, false);
         keyMap.put(KeyEvent.VK_DOWN, false);
         keyMap.put(KeyEvent.VK_LEFT, false);
         keyMap.put(KeyEvent.VK_RIGHT, false);
-        keyMap.put(KeyEvent.VK_ENTER, false);
+
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -39,45 +41,49 @@ public class EtchASketch extends JPanel {
     }
 
     private void moveDot() {
-        Point lastPoint = points.get(points.size() - 1);
-        int x = lastPoint.x;
-        int y = lastPoint.y;
-
-        if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
-            x -= 5;
-            y -= 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
-            x += 5;
-            y -= 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
-            x -= 5;
-            y += 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
-            x += 5;
-            y += 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false)) {
-            y -= 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false)) {
-            y += 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
-            x -= 5;
-        } else if (keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
-            x += 5;
+        if (keyMap.getOrDefault(KeyEvent.VK_E, false)) { // Erase functionality
+            points.clear();
+            colors.clear();
+            points.add(new Point(250, 250)); // Reset to starting point
+            colors.add(currentColor); // Add the current color for the new starting point
         } else {
-            return; // No movement key pressed
+            Point lastPoint = points.get(points.size() - 1);
+            int x = lastPoint.x;
+            int y = lastPoint.y;
+
+            if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
+                x -= 5;
+                y -= 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
+                x += 5;
+                y -= 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
+                x -= 5;
+                y += 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
+                x += 5;
+                y += 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false)) {
+                y -= 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false)) {
+                y += 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
+                x -= 5;
+            } else if (keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
+                x += 5;
+            } else {
+                return; // No movement key pressed
+            }
+
+            points.add(new Point(x, y));
+            colors.add(currentColor); // Add the current color for the new point
         }
-
-        points.add(new Point(x, y));
-        colors.add(currentColor); // Add the current color for the new point
-
         repaint();
     }
 
     @Override
-     public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0,0,500,500,this);
-
         for (int i = 1; i < points.size(); i++) {
             g.setColor(colors.get(i)); // Set the color for each segment
             Point p1 = points.get(i - 1);
@@ -104,6 +110,7 @@ public class EtchASketch extends JPanel {
             EtchASketch sketch = new EtchASketch();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.getContentPane().add(sketch, BorderLayout.CENTER);
+
             // Sidebar for color selection and erase functionality
             JPanel sidebar = new JPanel();
             sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
