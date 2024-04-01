@@ -22,7 +22,6 @@ public class EtchASketch extends JPanel {
         setFocusable(true);
         points.add(new Point(250, 250)); // Starting point
         colors.add(currentColor); // Add the current color for the starting point
-
         // Initialize key states for movement and erase
         keyMap.put(KeyEvent.VK_UP, false);
         keyMap.put(KeyEvent.VK_DOWN, false);
@@ -44,7 +43,7 @@ public class EtchASketch extends JPanel {
     }
 
     private void moveDot() {
-        if (keyMap.getOrDefault(KeyEvent.VK_ENTER, false)) { // Erase functionality
+        if (keyMap.getOrDefault(KeyEvent.VK_ENTER, false)) { // enter functionality
             gameRunning = true;
         }
         while (gameRunning) {
@@ -91,8 +90,8 @@ public class EtchASketch extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        if (!gameRunning) {
-            g.drawImage(startScreen, 0, 0, 500, 500, null);
+        if(!gameRunning) {
+            //g.drawImage(startScreen, 0, 0, 500, 500, null);
         }
         super.paintComponent(g);
         for (int i = 1; i < points.size(); i++) {
