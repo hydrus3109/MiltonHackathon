@@ -12,8 +12,11 @@ public class EtchASketch extends JPanel {
     private List<Color> colors = new ArrayList<>(); // Track colors for each point
     private Color currentColor = Color.BLACK; // Start with black color
     private Map<Integer, Boolean> keyMap = new HashMap<>(); // Track key states
+    private boolean gameRunning = false;
+    public Image startScreen;
 
     public EtchASketch() {
+        startScreen = Toolkit.getDefaultToolkit().getImage("EtchHomescreen.png");
         setPreferredSize(new Dimension(500, 500));
         setBackground(Color.WHITE);
         setFocusable(true);
@@ -41,48 +44,57 @@ public class EtchASketch extends JPanel {
     }
 
     private void moveDot() {
-        if (keyMap.getOrDefault(KeyEvent.VK_E, false)) { // Erase functionality
-            points.clear();
-            colors.clear();
-            points.add(new Point(250, 250)); // Reset to starting point
-            colors.add(currentColor); // Add the current color for the new starting point
-        } else {
-            Point lastPoint = points.get(points.size() - 1);
-            int x = lastPoint.x;
-            int y = lastPoint.y;
-
-            if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
-                x -= 5;
-                y -= 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
-                x += 5;
-                y -= 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
-                x -= 5;
-                y += 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
-                x += 5;
-                y += 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false)) {
-                y -= 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false)) {
-                y += 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
-                x -= 5;
-            } else if (keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
-                x += 5;
-            } else {
-                return; // No movement key pressed
+        while (gameRunning) {
+            if (keyMap.getOrDefault(KeyEvent.VK_ENTER, false)) { // Erase functionality
+                gameRunning = true;
             }
 
-            points.add(new Point(x, y));
-            colors.add(currentColor); // Add the current color for the new point
+            if (keyMap.getOrDefault(KeyEvent.VK_E, false)) { // Erase functionality
+                points.clear();
+                colors.clear();
+                points.add(new Point(250, 250)); // Reset to starting point
+                colors.add(currentColor); // Add the current color for the new starting point
+            } else {
+                Point lastPoint = points.get(points.size() - 1);
+                int x = lastPoint.x;
+                int y = lastPoint.y;
+
+                if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
+                    x -= 5;
+                    y -= 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
+                    x += 5;
+                    y -= 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
+                    x -= 5;
+                    y += 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false) && keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
+                    x += 5;
+                    y += 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_UP, false)) {
+                    y -= 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_DOWN, false)) {
+                    y += 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_LEFT, false)) {
+                    x -= 5;
+                } else if (keyMap.getOrDefault(KeyEvent.VK_RIGHT, false)) {
+                    x += 5;
+                } else {
+                    return; // No movement key pressed
+                }
+
+                points.add(new Point(x, y));
+                colors.add(currentColor); // Add the current color for the new point
+            }
+            repaint();
         }
-        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        if (!gameRunning) {
+            g.drawImage(startScreen, 0, 0, 500, 500, null);
+        }
         super.paintComponent(g);
         for (int i = 1; i < points.size(); i++) {
             g.setColor(colors.get(i)); // Set the color for each segment
