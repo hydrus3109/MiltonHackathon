@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0b6a3b3-4201-4cb7-996c-f3ee172c22a5" name="Changes" comment="Added Changeable backgrounds">
-      <change afterPath="$PROJECT_DIR$/src/IMG_0311.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aquarium.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/beach.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kitchen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/space.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EtchASketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EtchASketch.java" afterDir="false" />
     </list>
@@ -46,7 +41,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711981885006</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Changeable backgrounds">
+      <created>1711986242347</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711986242347</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
